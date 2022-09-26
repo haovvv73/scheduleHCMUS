@@ -1,0 +1,371 @@
+/* GLOBAL */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #D5DA9F;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 24px;
+}
+
+/* HEADER */
+.header {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #505530;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.header__infoUser{
+    padding: 2px;
+    width: 25%;
+    background-color: transparent;
+    border: 3px solid #505530;
+    border-radius: 5px;
+}
+.header__infoUser .header__item{
+    margin: 4px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: #FAEDDB;
+}
+/* SCHEDULE */
+.schedule{
+    width: 90%;
+    font-weight: 300;
+    margin-top: 20px;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+.schedule__content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/* Schedule table */
+.schedule__table{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid #505530;
+}
+.schedule__table div {
+    width: 12.3%;
+}
+.schedule__table .schedule__tableitem {
+    padding: 5px;
+    margin: 3px 0px;
+    height: 38px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #FAEDDB;
+    position: relative;
+}
+.schedule__table .schedule__even{
+    background-color: #d69c69;
+    color: #ffffff;
+}
+.schedule__table .schedule__odd{
+    background-color: #9da559;
+    color: #ffffff;
+}
+.schedule__table .schedule__hide {
+    background-color: #D5DA9F;
+}
+.schedule__table .schedule__edit {
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid #7FC241;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0;
+    z-index: -99;
+}
+.schedule__table .schedule__delete {
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid red;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -99;
+}
+.schedule__table .schedule__nofiicon{
+    color: rgb(255, 255, 0);
+    position: absolute;
+    bottom: 2px;
+    right: 8px;
+    text-shadow: 1px 0px 5px rgba(144, 150, 150, 1);
+}
+.schedule__table .schedule__noficationed {
+    position: absolute;
+    z-index: 999;
+    bottom: -28px;
+    right: -10px;
+    padding: 3px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    opacity: 0;
+}
+.schedule__table .schedule__tableitem:hover .schedule__noficationed {
+    transition: 500ms;
+    opacity: 1;
+}
+/* Schedule edit table */
+.schedule__editTable{
+    width: 25%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid #505530;
+    background-color: #FAEDDB;
+}
+.schedule__editTable .schedule__item {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid #505530;
+}
+/* ---- */
+.schedule__mode{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.schedule__mode .edit{
+    padding: 10px 15px;
+    color: #7FC241;
+    border-radius: 5px;
+    border: 3px solid #7FC241;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.schedule__mode .edit:hover{
+    transition: 300ms;
+    color: white;
+    border: 3px solid #ffffff;
+    background-color: #7FC241;
+}
+.schedule__mode .delete{
+    color: #FF0202;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 3px solid #FF0202;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.schedule__mode .delete:hover{
+    transition: 300ms;
+    color: white;
+    border: 3px solid #ffffff;
+    background-color: #FF0202;
+}
+.schedule__mode .resetMode{
+    color: gray;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 3px solid gray;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.schedule__mode .resetMode:hover{
+    transition: 300ms;
+    color: white;
+    border: 3px solid #ffffff;
+    background-color: gray;
+}
+/* ---- */
+.schedule__Nofication{
+    color: red;
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #d69c69;
+    background-color: white;
+}
+/* ---- */
+.schedule__button{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.schedule__button button {
+    margin-top: 10px;
+    padding: 10px 3%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: white;
+}
+.schedule__button #add{
+    padding: 10px 10%;
+    background-color: #4daca3;
+    border: 1px solid #4daca3;
+}
+.schedule__button #add:hover{
+    color: #4daca3;
+    transition: 300ms;
+    border: 1px solid #4daca3;
+    background-color: white;
+}
+.schedule__button #clear{
+    background-color: rgb(199, 199, 117);
+    border: 1px solid rgb(199, 199, 117);
+}
+.schedule__button #clear:hover{
+    color: rgb(199, 199, 117);
+    transition: 300ms;
+    border: 1px solid rgb(199, 199, 117);
+    background-color: white;
+}
+.schedule__button #update{
+    background-color: #d69c69;
+    border: 1px solid #d69c69;
+}
+.schedule__button #update:hover{
+    color: #d69c69;
+    transition: 300ms;
+    border: 1px solid #d69c69;
+    background-color: white;
+}
+/* save Schedule */
+.saveSchedule {
+    padding: 8px;
+    margin: 0px 3px;
+    background-color: white;
+    border: 2px solid black;
+}
+.saveSchedule__btn{
+    cursor: pointer;
+    padding: 8px;
+    border: #4daca3;
+    border-radius: 5px;
+    background-color: #4daca3;
+}
+/* SCHEDULE LOG */
+.schedule__log {
+    background-color: #FAEDDB;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ---login--- */
+.schedule__login{
+    background-color: #4daca3;
+    padding: 10px;
+}
+.schedule__login input{
+    width: 100%;
+    font-size: 24px;
+    outline: none;
+    border: 2px solid #d69c69 ;
+    border-radius: 7px;
+}
+.schedule__login button{
+    padding: 10px;
+    margin: 5px 0px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #d69c69 ;
+    border-radius: 7px;
+}
+.schedule__login button:hover{
+    transition: 500ms;
+    background-color: white ;
+    color: black;
+}
+/* ---register--- */
+.schedule__register{
+    background-color: #d69c69;
+    padding: 10px;
+}
+.schedule__register input{
+    width: 100%;
+    font-size: 24px;
+    outline: none;
+    border: 2px solid #4daca3 ;
+    border-radius: 7px;
+}
+.schedule__register button{
+    padding: 10px;
+    margin: 5px 0px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #4daca3;
+    border-radius: 7px;
+}
+.schedule__register button:hover{
+    transition: 500ms;
+    background-color: white ;
+    color: black;
+}
+/* FOOTER */
+.footer {
+    margin-top: 30px;
+    width: 100%;
+    height: 30px;
+    padding: 2px;
+    text-align: center;
+    background-color: #D5DA9F;
+    /* border-top: 2px solid black; */
+}
+
+/* responsive */
+/* default font size txt lesson */
+.spanfontsize{
+    font-size: 20px;
+}
+/* tablet, mobile :  width < 1050px */
+@media only screen and (max-width: 730px){
+    .schedule__table .schedule__tableitem {
+        font-size: 17px;
+    }
+    .schedule__table  .spanfontsize{
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width: 1050px){
+    .schedule__table{
+        width: 100%;
+    }
+    .schedule__editTable{
+        width: 100%;
+        margin-top: 30px;
+    }
+}

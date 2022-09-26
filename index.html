@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="./Paomedia-Small-N-Flat-Calendar.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCMUS schedule</title>
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="./static/css/style.css">
+    <!-- GG FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <!-- ICON AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header__infoUser">
+            <div class="header__item" id="divName">
+                <span style="font-weight: 600;">Name</span>
+            </div>
+            <div class="header__item" id="divClass">
+                <span style="font-weight: 600;">Class</span>
+            </div>
+            <div class="header__item" style="background-color: rgba(255, 0, 0, 0.656); text-align: center; cursor: pointer; " id="btnlogout"> <i class="fa fa-power-off"></i> </div>
+        </div>
+        <!-- NOFICATION is Save ? -->
+        <section id="saveDiag" ></section>
+        <div class="header__title">
+            <h1>Schedule HCMUS</h1>
+        </div>
+    </header>
+
+    <!-- SCHEDULE -->
+    <section class="schedule">
+        <div class="schedule__content">
+            <!-- thoi khoa bieu -->
+            <div class="schedule__table">
+                <!-- colum giờ học và ngày  -->
+                <div>
+                    <div class="schedule__tableitem  schedule__odd">N.V.Cu</div>
+                    <div class="schedule__tableitem  schedule__even">6h40</div>
+                    <div class="schedule__tableitem  schedule__odd">7h30</div>
+                    <div class="schedule__tableitem  schedule__even">8h30</div>
+                    <div class="schedule__tableitem  schedule__odd">9h20</div>
+                    <div class="schedule__tableitem  schedule__even">10h20</div>
+                    <div class="schedule__tableitem  schedule__odd">11h10</div>
+                    <div class="schedule__tableitem  schedule__even">12h30</div>
+                    <div class="schedule__tableitem  schedule__odd">13h20</div>
+                    <div class="schedule__tableitem  schedule__even">14h20</div>
+                    <div class="schedule__tableitem  schedule__odd">15h10</div>
+                    <div class="schedule__tableitem  schedule__even">16h10</div>
+                    <div class="schedule__tableitem  schedule__odd">17h00</div>
+                </div>
+                <!-- colum môn học -->
+                <div>
+                    <div class="schedule__tableitem schedule__even">monday</div>
+                    <div id="scheduleCol1" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem schedule__odd">tuesday</div>
+                    <div id="scheduleCol2" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem schedule__even">wednesday</div>
+                    <div id="scheduleCol3" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem schedule__odd">thursday</div>
+                    <div id="scheduleCol4" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem schedule__even">frinday</div>
+                    <div id="scheduleCol5" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem schedule__odd">saturday</div>
+                    <div id="scheduleCol6" style="width: 100%;"></div>
+                </div>
+                <div>
+                    <div class="schedule__tableitem  schedule__odd">L.TRUNG</div>
+                    <div class="schedule__tableitem  schedule__even">7h30</div>
+                    <div class="schedule__tableitem  schedule__odd">8h20</div>
+                    <div class="schedule__tableitem  schedule__even">9h20</div>
+                    <div class="schedule__tableitem  schedule__odd">10h10</div>
+                    <div class="schedule__tableitem  schedule__even">11h10</div>
+                    <div class="schedule__tableitem  schedule__odd">12h30</div>
+                    <div class="schedule__tableitem  schedule__even">13h20</div>
+                    <div class="schedule__tableitem  schedule__odd">14h20</div>
+                    <div class="schedule__tableitem  schedule__even">15h10</div>
+                    <div class="schedule__tableitem  schedule__odd">16h10</div>
+                </div>
+            </div>
+            <!-- bang chinh sua thoi khoa bieu -->
+            <form class="schedule__editTable" id="editTableForm">
+                <p>Option</p>
+                <div class="schedule__mode">
+                    <!-- chinh sua TKB -->
+                    <div class="edit" id="btnEdit">
+                        <i class="fa fa-pencil-alt"></i>
+                    </div>
+                    <!-- reset mode -->
+                    <div class="resetMode" id="btnResetMode">
+                        <i class="fa fa-window-close"></i>
+                    </div>
+                    <!-- xoa TKB -->
+                    <div class="delete" id="btnDelete">
+                        <i class="fa fa-trash-alt"></i>
+                    </div>
+                </div>
+
+                <p>Nofication</p>
+                <!-- thong bao cho nguoi dung : validation, trang thoi edit/delete -->
+                <div class="schedule__Nofication" id="Nofication">
+                    <p id="empty"></p>
+                    <p id="timeLesson"></p>
+                </div>
+                <hr style="border-top: 2px solid #505530;">
+
+                <p>Name subject</p>
+                <input class="schedule__item " id="inpName" type="text">
+                <p>write note for this suject</p>
+                <input class="schedule__item " id="inpNote" type="text">
+
+                <p>number lesson begin - end (1->5) </p>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <input class="schedule__item" id="inpTimeStart" type="number" style="width:40%;">
+                    <i class="fa fa-long-arrow-alt-right"></i>
+                    <input class="schedule__item" id="inpTimeEnd" type="number" style="width:40%;">
+                </div>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 40%;">
+                        <p>Day lesson</p>
+                        <select class="schedule__item" id="inpDay" style="text-align: left;">
+                            <option value="">---</option>
+                            <option value="0">monday</option>
+                            <option value="1">tuesday</option>
+                            <option value="2">wednesday</option>
+                            <option value="3">thursday</option>
+                            <option value="4">friday</option>
+                            <option value="5">saturday</option>
+                        </select>
+                        <p>Room lesson</p>
+                        <input class="schedule__item" id="inpRoom" type="text">
+                    </div>
+                    <div>
+                        <p>Location</p>
+                        <select class="schedule__item" id="inpLocation" style="text-align: left;">
+                            <option value="">---</option>
+                            <option value="NVC">NVC</option>
+                            <option value="LT">Linh Trung</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="schedule__button">
+                    <!-- them mon hoc -->
+                    <button id="add" type="button">add</button>
+                    <!-- update mon hoc -->
+                    <button id="update" type="button" disabled>update</button>
+                    <!-- clear input mon hoc -->
+                    <button id="clear" type="button">clear</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- LOGIN/REGISTER -->
+    <section class="schedule__log" id="scheduleTablelog" >
+        <div style="display: flex;">
+            <div class="schedule__login">
+                <h3 style="text-align: center;" >đăng nhập</h3>
+                <p>Tên Sinh Viên</p>
+                <input type="text" id="inpLoginName" >
+                <p>Mật Khẩu</p>
+                <input type="password" id="inpLoginPass">
+                <div id="loginNofication"></div>
+                <button id="btnLogin"> login </button>
+            </div>
+            <div class="schedule__register">
+                <h3 style="text-align: center;" >đăng ký</h3>
+                <p>Tên Sinh Viên</p>
+                <input type="text" id="inpRegisterName">
+                <p>Mật Khẩu</p>
+                <input type="password" id="inpRegisterPass">
+                <p>Lớp</p>
+                <input type="text" id="inpRegisterClass">
+                <div id="registerNofication"></div>
+                <button id="btnRegister"> register </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        @copyright Vo tran Gia Hao
+    </footer>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- JS file -->
+    <script src="./static/js/models/UserSchedule.js"></script>
+    <script src="./static/js/validation/Validation.js"></script>
+    <script src="./static/js/services/UserService.js"></script>
+    <script src="./static/js/controller/main.js"></script>
+
+</body>
+
+</html>

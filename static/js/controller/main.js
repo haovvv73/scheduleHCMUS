@@ -42,7 +42,7 @@ let btnlogout = getID('btnlogout')
 
 // api fucntion
 // get detail data from sever
-let getUser =  (id) => {
+let getUser = (id) => {
     saveDiag.innerHTML = `
     <div class="saveSchedule" >
         <p> waiting...... </p>
@@ -62,8 +62,8 @@ let getUser =  (id) => {
         })
 }
 // check acc is save local store = yes => getuser()
-let checkLocal = ()=>{
-    if( localStorage.getItem("id")){
+let checkLocal = () => {
+    if (localStorage.getItem("id")) {
         let id = JSON.parse(localStorage.getItem("id"))
         // remove ui login/register
         document.getElementById('scheduleTablelog').remove()
@@ -84,12 +84,18 @@ let saveUser = async (id, data) => {
             <div class="saveSchedule" >
                 <p style="color: green;" >success</p>
             </div>`
+            setTimeout(() => {
+                saveDiagRender(false);
+            }, 1000)
         })
         .catch((err) => {
             saveDiag.innerHTML = `
             <div class="saveSchedule" >
-                <p style="color: red;">error</p>
+                <p style="color: red;">vui lòng cập nhập lại</p>
             </div>`
+            setTimeout(() => {
+                location.reload();
+            }, 1000)
         })
 }
 // function say save schedule before user leave =yes=> saveUser()
@@ -108,22 +114,22 @@ let saveDiagRender = (isSave) => {
 // -------------------------------------------------------------------------
 
 // function handle check acc is create and check name, pass user
-let checkIsCreate = (list = [],valueName,valuePass)=>{ 
+let checkIsCreate = (list = [], valueName, valuePass) => {
     let flag = false;
-    list.map((item,index)=>{
-        if(item.userName.toLowerCase().trim() === valueName.toLowerCase().trim() && item.userPass === valuePass ){
+    list.map((item, index) => {
+        if (item.userName.toLowerCase().trim() === valueName.toLowerCase().trim() && item.userPass === valuePass) {
             // is create => save local to login
-            localStorage.setItem("id",JSON.stringify(item.id))
+            localStorage.setItem("id", JSON.stringify(item.id))
             flag = true;
         }
     })
     return flag
 }
 // function handle check accout is registed 
-let checkIsRegister = (list = [],valueName)=>{ 
+let checkIsRegister = (list = [], valueName) => {
     let flag = false;
-    list.map((item,index)=>{
-        if(item.userName.toLowerCase().trim() == valueName.toLowerCase().trim()){
+    list.map((item, index) => {
+        if (item.userName.toLowerCase().trim() == valueName.toLowerCase().trim()) {
             flag = true;
         }
     })
@@ -136,22 +142,23 @@ btnLogin.addEventListener('click', () => {
     let inpLoginPass = getID('inpLoginPass').value
 
     let isCheck = true
-    isCheck &= validation.checkEmty(inpLoginName,'loginNofication','không bỏ trống')
-    isCheck &= validation.checkEmty(inpLoginPass,'loginNofication','không bỏ trống')
+    isCheck &= validation.checkEmty(inpLoginName, 'loginNofication', 'không bỏ trống')
+    isCheck &= validation.checkEmty(inpLoginPass, 'loginNofication', 'không bỏ trống')
 
-    if(isCheck){
+    if (isCheck) {
         // get data to check is create
+        document.getElementById('loginNofication').innerHTML = '<span style="color: green;"> ok, please wait </span>'
         userService.getListUser()
-        .then((result)=>{
-            if( checkIsCreate(result.data,inpLoginName,inpLoginPass) ){
-                document.getElementById('loginNofication').innerHTML = '<span style="color: grey;"> ok, please wait </span>'
-                checkLocal()
-            }else{
-                document.getElementById('loginNofication').innerHTML = '<span style="color: red;"> sai tài khoản hoặc mật khẩu </span>'
-            }
-        })
-        .catch((err)=>{
-        })
+            .then((result) => {
+                if (checkIsCreate(result.data, inpLoginName, inpLoginPass)) {
+                    document.getElementById('loginNofication').innerHTML = '<span style="color: grey;"></span>'
+                    checkLocal()
+                } else {
+                    document.getElementById('loginNofication').innerHTML = '<span style="color: red;"> sai tài khoản hoặc mật khẩu </span>'
+                }
+            })
+            .catch((err) => {
+            })
     }
 
 })
@@ -163,11 +170,11 @@ btnRegister.addEventListener('click', () => {
     let inpRegisterClass = getID('inpRegisterClass').value
 
     let isCheck = true
-    isCheck &= validation.checkEmty(inpRegisterName,'registerNofication','không bỏ trống')
-    isCheck &= validation.checkEmty(inpRegisterPass,'registerNofication','không bỏ trống')
-    isCheck &= validation.checkEmty(inpRegisterClass,'registerNofication','không bỏ trống')
+    isCheck &= validation.checkEmty(inpRegisterName, 'registerNofication', 'không bỏ trống')
+    isCheck &= validation.checkEmty(inpRegisterPass, 'registerNofication', 'không bỏ trống')
+    isCheck &= validation.checkEmty(inpRegisterClass, 'registerNofication', 'không bỏ trống')
 
-    if(isCheck){
+    if (isCheck) {
         // make obj user
         let newUser = {
             userName: inpRegisterName,
@@ -176,24 +183,24 @@ btnRegister.addEventListener('click', () => {
         }
         // get data to check is create
         userService.getListUser()
-        .then((result)=>{
-            if( checkIsRegister(result.data,inpRegisterName) ){
-                document.getElementById('registerNofication').innerHTML = '<span style="color: red;"  > đã tồn tại account </sp>'
-            }else{
-                // add list acc
-                userService.addListUser(newUser)
-                // add list lesson
-                let newUser2 = new User(newUser.userName,newUser.class)
-                userService.addDate(newUser2)
-                document.getElementById('registerNofication').innerHTML = '<span style="color: green;" > success </span>'
-            }
-        })
-        .catch((err)=>{
-        })
+            .then((result) => {
+                if (checkIsRegister(result.data, inpRegisterName)) {
+                    document.getElementById('registerNofication').innerHTML = '<span style="color: red;"  > đã tồn tại account </sp>'
+                } else {
+                    // add list acc
+                    userService.addListUser(newUser)
+                    // add list lesson
+                    let newUser2 = new User(newUser.userName, newUser.class)
+                    userService.addDate(newUser2)
+                    document.getElementById('registerNofication').innerHTML = '<span style="color: green;" > success </span>'
+                }
+            })
+            .catch((err) => {
+            })
     }
 })
 // LOGOUT account btn
-btnlogout.addEventListener('click',()=>{
+btnlogout.addEventListener('click', () => {
     localStorage.removeItem("id")
     window.location.reload()
 })
@@ -346,6 +353,10 @@ btnDelete.addEventListener('click', () => {
     editmdoe('off')
     // on delete
     deletemdoe('on')
+    // prevent update and add and clear
+    btnadd.style.cursor = 'no-drop';
+    btnUpdate.style.cursor = 'no-drop';
+    btnclear.style.cursor = 'no-drop';
 })
 // btn turn on edit shape
 btnEdit.addEventListener('click', () => {
@@ -353,6 +364,10 @@ btnEdit.addEventListener('click', () => {
     deletemdoe('off')
     // on edit
     editmdoe('on')
+    btnUpdate.style.cursor = 'pointer';
+    // prevent clear and add
+    btnadd.style.cursor = 'no-drop';
+    btnclear.style.cursor = 'no-drop';
 })
 // btn sesert => turn off delete and edit shape
 btnResetMode.addEventListener('click', () => {
@@ -360,6 +375,10 @@ btnResetMode.addEventListener('click', () => {
     deletemdoe('off')
     // off edit
     editmdoe('off')
+    // allow update and add and clear
+    btnadd.style.cursor = 'pointer';
+    btnUpdate.style.cursor = 'pointer';
+    btnclear.style.cursor = 'pointer';
     // undisabled 
     // time start and end
     inpTimeEnd.disabled = false;
@@ -370,6 +389,8 @@ btnResetMode.addEventListener('click', () => {
     inpDay.disabled = false;
     // clear form
     editTableForm.reset()
+    // clear validation
+    nofication.innerHTML = `<p id="empty"></p> <p id="timeLesson"></p>`
 })
 
 // function handle delete and edit - update

@@ -136,7 +136,8 @@ let checkIsRegister = (list = [], valueName) => {
     return flag
 }
 // LOGIN account btn
-btnLogin.addEventListener('click', () => {
+btnLogin.addEventListener('click', (e) => {
+    e.preventDefault()
     // dom login login form 
     let inpLoginName = getID('inpLoginName').value
     let inpLoginPass = getID('inpLoginPass').value
@@ -163,7 +164,8 @@ btnLogin.addEventListener('click', () => {
 
 })
 // REGISTER account btn
-btnRegister.addEventListener('click', () => {
+btnRegister.addEventListener('click', (e) => {
+    e.preventDefault()
     // dom login register form 
     let inpRegisterName = getID('inpRegisterName').value
     let inpRegisterPass = getID('inpRegisterPass').value
@@ -357,6 +359,8 @@ btnDelete.addEventListener('click', () => {
     btnadd.style.cursor = 'no-drop';
     btnUpdate.style.cursor = 'no-drop';
     btnclear.style.cursor = 'no-drop';
+    btnadd.disabled = true;
+    btnclear.disabled = true;
 })
 // btn turn on edit shape
 btnEdit.addEventListener('click', () => {
@@ -368,6 +372,8 @@ btnEdit.addEventListener('click', () => {
     // prevent clear and add
     btnadd.style.cursor = 'no-drop';
     btnclear.style.cursor = 'no-drop';
+    btnadd.disabled = true;
+    btnclear.disabled = true;
 })
 // btn sesert => turn off delete and edit shape
 btnResetMode.addEventListener('click', () => {
@@ -426,6 +432,7 @@ let showDetailLesson = (row, col) => {
     inpDay.disabled = true;
     inpTimeEnd.disabled = true;
     inpTimeStart.disabled = true;
+
     btnadd.disabled = true;
     btnclear.disabled = true;
 }

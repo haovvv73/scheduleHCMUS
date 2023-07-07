@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="./Paomedia-Small-N-Flat-Calendar.ico"/>
+    <link rel="icon" href="./Paomedia-Small-N-Flat-Calendar.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HCMUS schedule</title>
 
@@ -31,10 +31,13 @@
             <div class="header__item" id="divClass">
                 <span style="font-weight: 600;">Class</span>
             </div>
-            <div class="header__item" style="background-color: rgba(255, 0, 0, 0.656); text-align: center; cursor: pointer; " id="btnlogout"> <i class="fa fa-power-off"></i> </div>
+            <div class="header__item"
+                style="background-color: rgba(255, 0, 0, 0.656); text-align: center; cursor: pointer; " id="btnlogout">
+                <i class="fa fa-power-off"></i>
+            </div>
         </div>
         <!-- NOFICATION is Save ? -->
-        <section id="saveDiag" ></section>
+        <section id="saveDiag"></section>
         <div class="header__title">
             <h1>Schedule HCMUS</h1>
         </div>
@@ -98,6 +101,8 @@
                     <div class="schedule__tableitem  schedule__odd">14h20</div>
                     <div class="schedule__tableitem  schedule__even">15h10</div>
                     <div class="schedule__tableitem  schedule__odd">16h10</div>
+                    <div class="schedule__tableitem  schedule__even">17h00</div>
+                    <div class="schedule__tableitem  schedule__odd"></div>
                 </div>
             </div>
             <!-- bang chinh sua thoi khoa bieu -->
@@ -174,19 +179,19 @@
         </div>
     </section>
     <!-- LOGIN/REGISTER -->
-    <section class="schedule__log" id="scheduleTablelog" >
+    <section class="schedule__log" id="scheduleTablelog">
         <div style="display: flex;">
-            <div class="schedule__login">
-                <h3 style="text-align: center;" >đăng nhập</h3>
+            <form class="schedule__login">
+                <h3 style="text-align: center;">đăng nhập</h3>
                 <p>Tên Sinh Viên</p>
-                <input type="text" id="inpLoginName" >
+                <input type="text" id="inpLoginName">
                 <p>Mật Khẩu</p>
                 <input type="password" id="inpLoginPass">
                 <div id="loginNofication"></div>
-                <button id="btnLogin"> login </button>
-            </div>
-            <div class="schedule__register">
-                <h3 style="text-align: center;" >đăng ký</h3>
+                <button type="submit" id="btnLogin"> login </button>
+            </form>
+            <form class="schedule__register">
+                <h3 style="text-align: center;">đăng ký</h3>
                 <p>Tên Sinh Viên</p>
                 <input type="text" id="inpRegisterName">
                 <p>Mật Khẩu</p>
@@ -194,8 +199,8 @@
                 <p>Lớp</p>
                 <input type="text" id="inpRegisterClass">
                 <div id="registerNofication"></div>
-                <button id="btnRegister"> register </button>
-            </div>
+                <button type="submit" id="btnRegister"> register </button>
+            </form>
         </div>
     </section>
 

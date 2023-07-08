@@ -1,4 +1,4 @@
 # scheduleHCMUS
 project create schedule HCMUS
-go to my website http://myhcmusschedule.surge.sh/
+go to my website http://hcmusschedule.surge.sh/
 accout : hao - 123456
